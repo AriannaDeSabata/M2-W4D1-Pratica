@@ -96,7 +96,9 @@ const jobs = [
     let buttonRemove = document.getElementById("buttonRemove")
 
     buttonInsert.addEventListener("click", cerca)
-    buttonRemove.addEventListener("click", () => {containResult.remove(list)})
+    buttonRemove.addEventListener("click", () => {
+      containResult.remove(list)
+    })
 
     let result = []
     let count 
@@ -104,9 +106,8 @@ const jobs = [
 
   function cerca(e){
     e.preventDefault()
-    contForm.style.transform = "translatex(-150px)"
 
-    if(jobPosition.value == "" || geoLocation.value == ""){
+    if(jobPosition.value == "" && geoLocation.value == ""){
         alert("campi obbligatori")
         
     } else {
@@ -126,6 +127,7 @@ const jobs = [
                 list.classList.add("listStyle")
                 containResult.classList.add("move2")
                 containResult.style.transition = "transform 1.2s"
+                contForm.style.transform = "translatex(-150px)"
             }
         }
     }
@@ -136,7 +138,13 @@ const jobs = [
   }
 
 
-
+document.addEventListener("scroll", () =>{
+  let scroll = window.scrollY
+  console.log(scroll)
+  contForm.style.position ="fixed"
+  let bannerColor = document.getElementById("banner2")
+  bannerColor.style.visibility ="visible"
+})
 
 
 
